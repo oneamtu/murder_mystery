@@ -1,0 +1,23 @@
+:markdown
+  You are correct. This is in line with our suspicions.
+
+  Thank you for doing your duty.
+
+  Enjoy the rest of your night.
+
+  The Brother Odd Police.
+
+  [back](/)
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Comment
+      %th Submitted at
+  %tbody
+    - submissions.each do |submission|
+      %tr
+        %td= submission.name
+        %td= submission.comment
+        %td= submission.submitted_at

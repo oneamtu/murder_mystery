@@ -1,10 +1,23 @@
 require "sinatra"
 require "sinatra/reloader" if development?
+# require "pry-rescue"
+
+require "./submission.rb"
+
+DataMapper.finalize
 
 enable :sessions
 
 use Rack::Auth::Basic, "Look in the bathroom" do |username, password|
-  username == 'investigator' and password == '206holland'
+  username == 'investigator' and password == '206hollandst'
+end
+
+configure :development do
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
+end
+
+configure :production do
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
 end
 
 SUSPECTS = %w[
@@ -16,8 +29,6 @@ SUSPECTS = %w[
   dr_orchid
 ]
 
-# TODO: character sites
-# TODO: character pics
 get '/' do
   haml :main, locals: { submitted: session[:submitted], guessed_right: session[:guessed_right] }
 end
@@ -34,27 +45,24 @@ get '/suspects/:name' do
   end
 end
 
-# TODO: who finished
 post '/submit' do
   session[:submitted] = true
 
-  if params[:weapon] == "poison" && params[:suspect] == "prof_plum"
-    session[:guessed_right] = true
-    render :haml, <<~HTML
-      :markdown
-        You are correct. This is in line with our suspicions.
+  guessed_right = params[:weapon] == "poison" && params[:suspect] == "prof_plum"
+  session[:guessed_right] = guessed_right
 
-        Thank you for doing your duty.
+  Submission.create(
+    name: params[:name],
+    weapon: params[:weapon],
+    suspect: params[:suspect],
+    comment: params[:comment],
+    success: guessed_right,
+    submitted_at: DateTime.now
+  )
 
-        Enjoy the rest of your night.
-
-        The Brother Odd Police.
-
-        [back](/)
-    HTML
+  if guessed_right
+    redirect to("/submissions")
   else
-    session[:guessed_right] = false
-
     render :haml, <<~HTML
       :markdown
         Thank you for your contribution. Unfortunately, it does not align with our current leads.
@@ -66,4 +74,8 @@ post '/submit' do
         [back](/)
     HTML
   end
+end
+
+get '/submissions' do
+  haml :submissions, locals: { submissions: Submission.all(success: true) }
 end
