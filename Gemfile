@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # base
 gem "sinatra"
+gem "sinatra-contrib"
 gem "rake"
 
 # console
@@ -10,3 +11,4 @@ gem "pry"
 
 # view
 gem "haml"
+gem "redcarpet"

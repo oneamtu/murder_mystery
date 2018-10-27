@@ -1,0 +1,75 @@
+%h3 File 103 - The Mysterious Murder at 206 Holland Manor
+
+:markdown
+
+  *2018-10-27 Official notice and request for information*
+
+  Authorities were notified that at *11:53 PM 2018-10-26 EST*, the lifeless corpse of [Mr. Boddy](/victim) was found at his residence at 206 Holland Manor. Initial investigation revealed trauma in the upper area of the body, but no definitive cause of death. The body was found in the bathroom. Foul play is suspected. A list of suspects was compiled.
+
+    * [Mr. Green](/suspects/mr_green)
+    * [Ms. Peacock](/suspects/ms_peacock)
+    * [Col. Mustard](/suspects/col_mustard)
+    * [Prof. Plum](/suspects/prof_plum)
+    * [Ms. Scarlet](/suspects/ms_scarlet)
+    * [Dr. Orchid PhD](/suspects/dr_orchid)
+
+  We are looking for any information that can lead to an arrest. Please do not disturb any evidence; if you inspect an object, *leave it as you found it*. Feel free to inspect electronic equipment. Sharing solutions with other investigators who are still exploring the crime scene is not encouraged. The main areas of interest are the office and the bathroom.
+
+  Please submit any leads or information on potential suspects to the Brother Odd Police.
+
+- if submitted
+  - if guessed_right
+    %b
+      Thank you for confirming our suspicions.
+
+      Enjoy the rest of your night.
+  - else
+    %b
+      Thank you for your contribution. Unfortunately, it does not align with our current leads.
+
+      Enjoy the rest of your night.
+- else
+  %br
+  %form{method: "POST", action: "submit"}
+    %div
+      %label{for: "name"}
+        %b Your Name
+      %input{name: "name"}
+    %br
+    %div
+      %label{for: "weapon"}
+        %b Weapon
+      %select{name: "weapon"}
+        %option{value: "rope"} Rope
+        %option{value: "wrench"} Wrench
+        %option{value: "poison"} Poison
+        %option{value: "candlestick"} Candlestick
+        %option{value: "knife"} Knife
+    %br
+    %div
+      %label{for: "suspect"}
+        %b Suspect
+      %select{name: "suspect"}
+        %option{value: "mr_green"} Mr. Green
+        %option{value: "ms_peacock"} Ms. Peacock
+        %option{value: "col_mustard"} Col. Mustard
+        %option{value: "prof_plum"} Prof. Plum
+        %option{value: "ms_scarlet"} Ms. Scarlet
+        %option{value: "dr_orchid"} Dr. Orchid PhD
+    %br
+    %div
+      %label{for: "comments"}
+        %b Other comments
+      %div
+        %textarea{name: "comments", rows: 5, maxlength: 200}
+    %br
+    %div
+      %i
+        You can only submit an answer once, so make sure you've considered all the information.
+    %br
+    %div
+      %input{type: "submit", value: "Submit"}
+
+%hr
+%i
+  Thank you for your collaboration with the Brother Odd Authorities.

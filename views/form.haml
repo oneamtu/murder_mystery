@@ -1,26 +1,39 @@
-%html
-  %h3 File 103 - The Mysterious Murder at 206 Holland Manor
-  Please submit any leads or information on potential suspects.
+%form{method: "POST", action: "submit"}
+  %div
+    %label{for: "name"}
+      %b Your Name
+    %input{name: "name"}
   %br
+  %div
+    %label{for: "weapon"}
+      %b Weapon
+    %select{name: "weapon"}
+      %option{value: "rope"} Rope
+      %option{value: "wrench"} Wrench
+      %option{value: "poison"} Poison
+      %option{value: "candlestick"} Candlestick
+      %option{value: "knife"} Knife
   %br
-  %form{method: "POST", action: "submit"}
+  %div
+    %label{for: "suspect"}
+      %b Suspect
+    %select{name: "suspect"}
+      %option{value: "mr_green"} Mr. Green
+      %option{value: "ms_peacock"} Ms. Peacock
+      %option{value: "col_mustard"} Col. Mustard
+      %option{value: "prof_plum"} Prof. Plum
+      %option{value: "ms_scarlet"} Ms. Scarlet
+      %option{value: "dr_orchid"} Dr. Orchid PhD
+  %br
+  %div
+    %label{for: "comments"}
+      %b Other comments
     %div
-      %label{for: "weapon"} Weapon
-      %select{name: "weapon"}
-        %option{value: "rope"} Rope
-        %option{value: "wrench"} Wrench
-        %option{value: "poison"} Poison
-    %div
-      %label{for: "suspect"} Suspect
-      %select{name: "suspect"}
-        %option{value: "mr_green"} Mr. Green
-        %option{value: "ms_peacock"} Ms. Peacock
-        %option{value: "col_mustard"} Col. Mustard
-        %option{value: "prof_plum"} Prof. Plum
-        %option{value: "ms_scarlet"} Ms. Scarlet
-        %option{value: "dr_orchid"} Dr. Orchid PhD
-    %div
-      %input{type: "submit", value: "Submit"}
-  %hr
-  %i
-    Thank you for your collaboration with the Brother Odd Authorities.
+      %textarea{name: "comments", rows: 5, maxlength: 200}
+  %br
+  %div
+    %i
+      You can only submit an answer once!
+  %br
+  %div
+    %input{type: "submit", value: "Submit"}
