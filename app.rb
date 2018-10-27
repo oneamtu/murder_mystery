@@ -3,6 +3,10 @@ require "sinatra/reloader" if development?
 
 enable :sessions
 
+use Rack::Auth::Basic, "Look in the bathroom" do |username, password|
+  username == 'investigator' and password == '206holland'
+end
+
 SUSPECTS = %w[
   mr_green
   ms_peacock
