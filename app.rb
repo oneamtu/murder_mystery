@@ -9,7 +9,7 @@ DataMapper.finalize
 enable :sessions
 
 use Rack::Auth::Basic, "Look in the bathroom" do |username, password|
-  username == 'investigator' and password == '206hollandst'
+  username == 'Investigator' and password == '206hollandst'
 end
 
 configure :development do
